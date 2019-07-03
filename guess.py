@@ -1,3 +1,4 @@
+from random import randrange
 
 def equals(guess, secret):
     return secret == guess
@@ -16,7 +17,7 @@ def show_status(turn, turns):
 
 
 def init():
-    secret = 47
+    secret = randrange(1, 101)
     turns = 3
     print('\n***** WELCOME TO THE GUESS GAME\n')
 
