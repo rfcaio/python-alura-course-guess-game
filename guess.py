@@ -63,3 +63,7 @@ def init():
                 print('{} IS LOWER THAN SECRET NUMBER.'.format(guess))
             points = update_points(points, guess, secret)
     print('\n***** THE GAME IS OVER.\n')
+
+
+if (__name__ == '__main__'):
+    init()
