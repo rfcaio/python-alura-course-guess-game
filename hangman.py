@@ -1,3 +1,17 @@
+from random import randrange
+
+def get_fighters_from(file_name):
+    fighters = []
+    fighters_file = open(file_name, 'r')
+    for fighter in fighters_file:
+        fighters.append(sanitize(fighter))
+    fighters_file.close()
+    return fighters
+
+
+def get_random_fighter(fighters):
+    return fighters[randrange(0, len(fighters))]
+
 
 def has_hanged(errors):
     return errors >= 5
@@ -13,7 +27,7 @@ def sanitize(word):
 
 def init():
     errors = 0
-    secret = 'ermac'
+    secret = get_random_fighter(get_fighters_from('fighters.txt'))
     score = ['_' for word in secret]
 
     print('\n***** WELCOME TO THE HANGMAN GAME\n')

@@ -1,9 +1,16 @@
 from unittest import TestCase
 
-from hangman import has_hanged, has_won, sanitize
+from hangman import get_random_fighter, has_hanged, has_won, sanitize
 
 
 class TestHangman(TestCase):
+    def test_get_random_fighter_should_return_a_randomic_fighter_from_a_list_of_fighters(self):
+        fighters = ['cyrax', 'ermac', 'syndel']
+        for attempt in range(0, 3):
+            fighter = get_random_fighter(fighters)
+            self.assertEqual(fighter in fighters, True)
+
+
     def test_has_hanged_should_return_false_when_the_amount_of_erros_is_lower_than_five(self):
         for error in range(0, 5):
             self.assertEqual(has_hanged(error), False)
