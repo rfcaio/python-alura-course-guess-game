@@ -1,6 +1,6 @@
 from random import randrange
 
-def get_fighters_from(file_name):
+def get_fighters_from_file(file_name):
     fighters = []
     fighters_file = open(file_name, 'r')
     for fighter in fighters_file:
@@ -25,9 +25,19 @@ def sanitize(word):
     return word.strip().lower()
 
 
+def update_score(score, secret, guess):
+    if (guess in secret):
+        index = 0
+        for letter in secret:
+            if (letter == guess):
+                score[index] = guess
+            index += 1
+    return score
+
+
 def init():
     errors = 0
-    secret = get_random_fighter(get_fighters_from('fighters.txt'))
+    secret = get_random_fighter(get_fighters_from_file('fighters.txt'))
     score = ['_' for word in secret]
 
     print('\n***** WELCOME TO THE HANGMAN GAME\n')
@@ -39,11 +49,7 @@ def init():
         guess = sanitize(input('***** CHOOSE A LETTER '))
 
         if (guess in secret):
-            index = 0
-            for letter in secret:
-                if (letter == guess):
-                    score[index] = guess
-                index += 1
+            score = update_score(score, secret, guess)
         else:
             errors += 1
         print('\n***** SCORE: {}'.format(score))

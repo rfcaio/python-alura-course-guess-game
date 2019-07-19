@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from hangman import get_random_fighter, has_hanged, has_won, sanitize
+from hangman import get_random_fighter, has_hanged, has_won, sanitize, update_score
 
 
 class TestHangman(TestCase):
@@ -33,3 +33,15 @@ class TestHangman(TestCase):
         self.assertEqual(sanitize(' Foo '), 'foo')
         self.assertEqual(sanitize('  Foo'), 'foo')
         self.assertEqual(sanitize('Foo  '), 'foo')
+
+
+    def test_update_score_should_return_the_same_score_when_the_secret_word_not_contains_the_guess(self):
+        score = ['_', '_', 'x']
+        secret = 'jax'
+        self.assertEqual(update_score(score, secret, 'b'), score)
+
+
+    def test_update_score_should_update_the_score_when_the_secret_word_contains_the_guess(self):
+        score = ['_', '_', 'x']
+        secret = 'jax'
+        self.assertEqual(update_score(score, secret, 'a'), ['_', 'a', 'x'])
