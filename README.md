@@ -1,3 +1,3 @@
 # About
 
-A simple guess game made in Python.
+Guess and hangman games made in Python.
